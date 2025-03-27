@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CricketTeam>
+  <Team country="Australia">
+    <player>Steve Smith</player>
+    <runs>8010</runs>
+    <wicket>17</wicket>
+  </Team>
+<Team country="India"><player>Virat Kohli</player><runs>12898</runs><wicket>4</wicket></Team></CricketTeam>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Details</title>
+    <style>
+        table { border-collapse: collapse; }
+        th, td { border: 1px solid black; padding: 5px; }
+    </style>
+</head>
+<body>
+    <h2>Employee Details</h2>
+    <select id="employeeSelect" onchange="getEmployeeDetails()">
+        <option value="">Select an employee</option>
+    </select>
+
+    <div id="employeeDetails"></div>
+
+    <script>
+        function loadEmployees() {
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    const employees = JSON.parse(this.responseText);
+                    const select = document.getElementById('employeeSelect');
+                    employees.forEach(employee => {
+                        const option = document.createElement('option');
+                        option.value = employee.eno;
+                        option.textContent = employee.ename;
+                        select.appendChild(option);
+                    });
+                }
+            };
+            xhr.open('GET', 'get_employees.php', true);
+            xhr.send();
+        }
+
+        function getEmployeeDetails() {
+            const eno = document.getElementById('employeeSelect').value;
+            if (!eno) {
+                document.getElementById('employeeDetails').innerHTML = '';
+                return;
+            }
+
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    const employee = JSON.parse(this.responseText);
+                    const html = `<table>
+                        <tr><th>Employee Number</th><td>${employee.eno}</td></tr>
+                        <tr><th>Name</th><td>${employee.ename}</td></tr>
+                        <tr><th>Designation</th><td>${employee.designation}</td></tr>
+                        <tr><th>Salary</th><td>${employee.salary}</td></tr>
+                    </table>`;
+                    document.getElementById('employeeDetails').innerHTML = html;
+                }
+            };
+            xhr.open('GET', `get_employee_details.php?eno=${eno}`, true);
+            xhr.send();
+        }
+
+        window.onload = loadEmployees;
+    </script>
+</body>
+</html>

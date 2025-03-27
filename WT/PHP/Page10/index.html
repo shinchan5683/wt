@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery Text Insertion</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <p class="demo-paragraph">This is a sample paragraph.</p>
+    <button id="insertBefore">Insert Before</button>
+    <button id="insertAfter">Insert After</button>
+
+    <script>
+        $(document).ready(function() {
+            $('#insertBefore').click(function() {
+                $('.demo-paragraph').before('<p>Text inserted before!</p>');
+            });
+            $('#insertAfter').click(function() {
+                $('.demo-paragraph').after('<p>Text inserted after!</p>');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<html>
+<body>
+    <h2>Student Information</h2>
+    <input type="text" id="studentName" placeholder="Enter student name" onblur="checkName()">
+    <img id="studentImage" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpue_kSPskwcncXROttpQ3McfClYJNTOjgfw&s" alt="Student Image"
+         onmouseover="this.style.transform='scale(1.2)'"
+         onmouseout="this.style.transform='scale(1)'"
+         onclick="this.style.transform='scale(0.8)'"
+         onmouseup="this.style.transform='scale(1)'">
+
+    <script>
+        window.onload = function() {
+            document.getElementById('studentName').focus();
+        };
+
+        function checkName() {
+            const nameInput = document.getElementById('studentName');
+            const studentImage = document.getElementById('studentImage');
+            
+            if (nameInput.value.trim() === '') {
+                studentImage.style.display = 'block';
+            } else {
+                nameInput.style.color = 'red';
+                nameInput.style.fontSize = '18px';
+                studentImage.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

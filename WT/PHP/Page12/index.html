@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Information</title>
+    <style>
+        table { border-collapse: collapse; }
+        th, td { border: 1px solid black; padding: 5px; }
+    </style>
+</head>
+<body>
+    <h2>Contact Information</h2>
+    <button onclick="loadContacts()">Print Contacts</button>
+    <div id="contactTable"></div>
+
+    <script>
+        function loadContacts() {
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    displayContacts(this.responseText);
+                }
+            };
+            xhr.open("GET", "read_contacts.php", true);
+            xhr.send();
+        }
+
+        function displayContacts(data) {
+            const contacts = JSON.parse(data);
+            let tableHTML = '<table><tr><th>Sr. No.</th><th>Name</th><th>Residence Number</th><th>Mobile Number</th><th>Address</th></tr>';
+            contacts.forEach(contact => {
+                tableHTML += `<tr><td>${contact.srno}</td><td>${contact.name}</td><td>${contact.residence_number}</td><td>${contact.mobile_number}</td><td>${contact.address}</td></tr>`;
+            });
+            tableHTML += '</table>';
+            document.getElementById('contactTable').innerHTML = tableHTML;
+        }
+    </script>
+</body>
+</html>

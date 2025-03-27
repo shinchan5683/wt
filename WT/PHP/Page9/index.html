@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Membership Form</title>
+</head>
+<body>
+    <form id="membershipForm" onsubmit="return validateForm()">
+        <div>
+            <label for="username">Username:</label><br>
+            <input type="text" id="username">
+            <span id="usernameError" style="color: red;"></span>
+        </div>
+        <div>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password">
+            <span id="passwordError" style="color: red;"></span>
+        </div>
+        <div>
+            <label for="confirmPassword">Confirm Password:</label><br>
+            <input type="password" id="confirmPassword">
+            <span id="confirmPasswordError" style="color: red;"></span>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+    function validateForm() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        // Clear previous errors
+        document.getElementById('usernameError').textContent = '';
+        document.getElementById('passwordError').textContent = '';
+        document.getElementById('confirmPasswordError').textContent = '';
+
+        // Username validation (min 4 chars, only letters, numbers, underscore)
+        if (username.length < 4 || !/^[a-zA-Z0-9_]+$/.test(username)) {
+            document.getElementById('usernameError').textContent = 'Invalid username';
+            return false;
+        }
+
+        // Password validation (min 8 chars, must contain uppercase, lowercase, number)
+        if (password.length < 8 || !/[A-Z]/.test(password) || 
+            !/[a-z]/.test(password) || !/[0-9]/.test(password)) {
+            document.getElementById('passwordError').textContent = 'Invalid password';
+            return false;
+        }
+
+        // Confirm password
+        if (password !== confirmPassword) {
+            document.getElementById('confirmPasswordError').textContent = 'Passwords do not match';
+            return false;
+        }
+
+        return true;
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<books>
+    <book>
+        <title>The Art of Programming</title>
+        <author>Donald Knuth</author>
+        <year>1968</year>
+        <price>59.99</price>
+    </book>
+    <book>
+        <title>Clean Code</title>
+        <author>Robert C. Martin</author>
+        <year>2008</year>
+        <price>39.99</price>
+    </book>
+    <book>
+        <title>Design Patterns</title>
+        <author>Gang of Four</author>
+        <year>1994</year>
+        <price>49.99</price>
+    </book>
+    <book>
+        <title>JavaScript: The Good Parts</title>
+        <author>Douglas Crockford</author>
+        <year>2008</year>
+        <price>29.99</price>
+    </book>
+    <book>
+        <title>Python Crash Course</title>
+        <author>Eric Matthes</author>
+        <year>2015</year>
+        <price>34.99</price>
+    </book>
+</books>

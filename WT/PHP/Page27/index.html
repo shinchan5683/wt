@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Voter Registration</title>
+    <style>
+        .error { color: red; display: none; }
+    </style>
+</head>
+<body>
+    <h2>Voter Registration</h2>
+    <form id="voterForm" onsubmit="validateForm(event)">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" onblur="validateName()">
+            <div id="nameError" class="error">Name must be in uppercase letters only</div>
+        </div>
+        <div>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" onblur="validateAge()">
+            <div id="ageError" class="error">Age must be 18 or above</div>
+        </div>
+        <div>
+            <label for="nationality">Nationality:</label>
+            <input type="text" id="nationality" name="nationality" onblur="validateNationality()">
+            <div id="nationalityError" class="error">Nationality must be Indian</div>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        function validateName() {
+            const name = document.getElementById('name').value;
+            const nameError = document.getElementById('nameError');
+            const isValid = /^[A-Z\s]+$/.test(name);
+            nameError.style.display = isValid ? 'none' : 'block';
+            return isValid;
+        }
+
+        function validateAge() {
+            const age = document.getElementById('age').value;
+            const ageError = document.getElementById('ageError');
+            const isValid = age >= 18;
+            ageError.style.display = isValid ? 'none' : 'block';
+            return isValid;
+        }
+
+        function validateNationality() {
+            const nationality = document.getElementById('nationality').value.toLowerCase();
+            const nationalityError = document.getElementById('nationalityError');
+            const isValid = nationality === 'indian';
+            nationalityError.style.display = isValid ? 'none' : 'block';
+            return isValid;
+        }
+
+        function validateForm(event) {
+            event.preventDefault();
+            if (validateName() && validateAge() && validateNationality()) {
+                const formData = new FormData(document.getElementById('voterForm'));
+                const xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById('result').innerHTML = this.responseText;
+                    }
+                };
+                xhr.open('POST', 'validate_voter.php', true);
+                xhr.send(formData);
+            }
+        }
+    </script>
+</body>
+</html>

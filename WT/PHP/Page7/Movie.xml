@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Movies>
+    <MovieInfo>
+        <MovieNo>1</MovieNo>
+        <MovieTitle>The Shawshank Redemption</MovieTitle>
+        <ActorName>Tim Robbins</ActorName>
+        <ReleaseYear>1994</ReleaseYear>
+    </MovieInfo>
+    <MovieInfo>
+        <MovieNo>2</MovieNo>
+        <MovieTitle>The Godfather</MovieTitle>
+        <ActorName>Marlon Brando</ActorName>
+        <ReleaseYear>1972</ReleaseYear>
+    </MovieInfo>
+    <MovieInfo>
+        <MovieNo>3</MovieNo>
+        <MovieTitle>The Dark Knight</MovieTitle>
+        <ActorName>Christian Bale</ActorName>
+        <ReleaseYear>2008</ReleaseYear>
+    </MovieInfo>
+    <MovieInfo>
+        <MovieNo>4</MovieNo>
+        <MovieTitle>Inception</MovieTitle>
+        <ActorName>Leonardo DiCaprio</ActorName>
+        <ReleaseYear>2010</ReleaseYear>
+    </MovieInfo>
+    <MovieInfo>
+        <MovieNo>5</MovieNo>
+        <MovieTitle>Pulp Fiction</MovieTitle>
+        <ActorName>John Travolta</ActorName>
+        <ReleaseYear>1994</ReleaseYear>
+    </MovieInfo>
+</Movies>

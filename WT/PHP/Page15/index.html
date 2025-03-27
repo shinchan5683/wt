@@ -1,0 +1,43 @@
+<html>
+<body>
+    <h2>Search with Suggestions</h2>
+    <input type="text" id="searchInput" placeholder="Start typing..." oninput="getSuggestions()">
+    <div id="suggestions" class="suggestions"></div>
+
+    <script>
+        function getSuggestions() {
+            const input = document.getElementById('searchInput');
+            const suggestionsDiv = document.getElementById('suggestions');
+            const query = input.value.trim();
+
+            if (!query) {
+                suggestionsDiv.style.display = 'none';
+                return;
+            }
+
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    const suggestions = JSON.parse(this.responseText);
+                    displaySuggestions(suggestions);
+                }
+            };
+            xhr.open('GET', `get_suggestions.php?q=${encodeURIComponent(query)}`, true);
+            xhr.send();
+        }
+
+        function displaySuggestions(suggestions) {
+            const suggestionsDiv = document.getElementById('suggestions');
+            suggestionsDiv.style.display = suggestions.length ? 'block' : 'none';
+            suggestionsDiv.innerHTML = suggestions
+                .map(suggestion => `<div class="suggestion-item" onclick="selectSuggestion('${suggestion}')">${suggestion}</div>`)
+                .join('');
+        }
+
+        function selectSuggestion(suggestion) {
+            document.getElementById('searchInput').value = suggestion;
+            document.getElementById('suggestions').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

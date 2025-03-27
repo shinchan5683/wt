@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Details</title>
+</head>
+<body>
+    <h2>Book Details</h2>
+    <select id="bookSelect" onchange="getBookDetails()">
+        <option value="">Select a book</option>
+    </select>
+
+    <div id="bookDetails">
+        <p>Title: <span id="bookTitle"></span></p>
+        <p>Author: <span id="bookAuthor"></span></p>
+        <p>Year: <span id="bookYear"></span></p>
+        <p>Price: <span id="bookPrice"></span></p>
+    </div>
+
+    <script>
+    // Load book titles when page loads
+    window.onload = function() {
+        fetch('load_books.php')
+            .then(response => response.text())
+            .then(data => {
+                const titles = data.split('|');
+                const select = document.getElementById('bookSelect');
+                titles.forEach(title => {
+                    const option = document.createElement('option');
+                    option.value = title;
+                    option.textContent = title;
+                    select.appendChild(option);
+                });
+            });
+    };
+
+    // Get book details when a book is selected
+    function getBookDetails() {
+        const title = document.getElementById('bookSelect').value;
+        if (!title) {
+            document.getElementById('bookDetails').style.display = 'none';
+            return;
+        }
+
+        fetch(`get_book_details.php?title=${encodeURIComponent(title)}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('bookTitle').textContent = data.title;
+                document.getElementById('bookAuthor').textContent = data.author;
+                document.getElementById('bookYear').textContent = data.year;
+                document.getElementById('bookPrice').textContent = data.price;
+                document.getElementById('bookDetails').style.display = 'block';
+            });
+    }
+    </script>
+</body>
+</html>

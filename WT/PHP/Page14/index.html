@@ -1,0 +1,54 @@
+<html>
+<body>
+    <h2>Teacher Details</h2>
+    <select id="teacherSelect" onchange="getTeacherDetails()">
+        <option value="">Select a teacher</option>
+    </select>
+    <div id="teacherDetails"></div>
+
+    <script>
+        window.onload = loadTeachers;
+
+        function loadTeachers() {
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    const teachers = JSON.parse(this.responseText);
+                    const select = document.getElementById('teacherSelect');
+                    teachers.forEach(teacher => {
+                        const option = document.createElement('option');
+                        option.value = teacher.tno;
+                        option.textContent = teacher.tname;
+                        select.appendChild(option);
+                    });
+                }
+            };
+            xhr.open('GET', 'get_teachers.php', true);
+            xhr.send();
+        }
+
+        function getTeacherDetails() {
+            const teacherId = document.getElementById('teacherSelect').value;
+            if (!teacherId) {
+                document.getElementById('teacherDetails').innerHTML = '';
+                return;
+            }
+
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    const teacher = JSON.parse(this.responseText);
+                    document.getElementById('teacherDetails').innerHTML = `
+                        <p><strong>Teacher Number:</strong> ${teacher.tno}</p>
+                        <p><strong>Name:</strong> ${teacher.tname}</p>
+                        <p><strong>Qualification:</strong> ${teacher.qualification}</p>
+                        <p><strong>Salary:</strong> ${teacher.salary}</p>
+                    `;
+                }
+            };
+            xhr.open('GET', `get_teacher_details.php?id=${teacherId}`, true);
+            xhr.send();
+        }
+    </script>
+</body>
+</html>

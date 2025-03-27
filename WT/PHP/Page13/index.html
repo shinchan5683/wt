@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Name Checker</title>
+</head>
+<body>
+    <input type="text" id="nameInput" placeholder="Enter your name" oninput="checkName()">
+    <div id="response"></div>
+
+    <script>
+        function checkName() {
+            const name = document.getElementById('nameInput').value.trim();
+            const xhr = new XMLHttpRequest();
+            
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById('response').textContent = this.responseText;
+                }
+            };
+
+            xhr.open('POST', 'check_name.php', true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.send('name=' + encodeURIComponent(name));
+        }
+    </script>
+</body>
+</html>

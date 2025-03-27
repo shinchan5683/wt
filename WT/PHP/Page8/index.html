@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Message Boxes</title>
+</head>
+<body>
+    <button onclick="addNumbers()">Add Two Numbers</button>
+    <div id="result"></div>
+
+    <script>
+        // Function to show exam message using alert
+        function showExamMessage() {
+            alert('Exams are near, have you started preparing for?');
+        }
+
+        // Function to add two numbers using prompt and confirm
+        function addNumbers() {
+            if (confirm('Would you like to add two numbers?')) {
+                let num1 = prompt('Enter the first number:');
+                if (num1 === null) return;
+                num1 = parseFloat(num1);
+
+                if (isNaN(num1)) {
+                    alert('Please enter a valid number!');
+                    return;
+                }
+
+                let num2 = prompt('Enter the second number:');
+                if (num2 === null) return;
+                num2 = parseFloat(num2);
+
+                if (isNaN(num2)) {
+                    alert('Please enter a valid number!');
+                    return;
+                }
+
+                const sum = num1 + num2;
+                document.getElementById('result').textContent = `The sum of ${num1} and ${num2} is: ${sum}`;
+            }
+        }
+
+        // Show exam message when page loads
+        window.onload = showExamMessage;
+    </script>
+</body>
+</html>

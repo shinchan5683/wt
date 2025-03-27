@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<students>
+    <student>
+        <rollno>101</rollno>
+        <name>John Smith</name>
+        <class>TYBSc</class>
+        <division>A</division>
+        <address>123 College Road</address>
+    </student>
+    <student>
+        <rollno>102</rollno>
+        <name>Emma Wilson</name>
+        <class>TYBSc</class>
+        <division>B</division>
+        <address>456 University Lane</address>
+    </student>
+    <student>
+        <rollno>103</rollno>
+        <name>Michael Brown</name>
+        <class>TYBSc</class>
+        <division>A</division>
+        <address>789 Campus Street</address>
+    </student>
+    <student>
+        <rollno>104</rollno>
+        <name>Sarah Davis</name>
+        <class>TYBSc</class>
+        <division>B</division>
+        <address>321 Education Avenue</address>
+    </student>
+    <student>
+        <rollno>105</rollno>
+        <name>James Wilson</name>
+        <class>TYBSc</class>
+        <division>A</division>
+        <address>654 Learning Road</address>
+    </student>
+</students>

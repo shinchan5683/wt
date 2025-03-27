@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<students><student><roll>101</roll><name>John Doe</name><address>Mumbai</address><college>ABC College</college><course>BCS</course></student><student><roll>102</roll><name>Jane Smith</name><address>Pune</address><college>XYZ College</college><course>BCA</course></student><student><roll>103</roll><name>Mike Ross</name><address>Delhi</address><college>PQR College</college><course>BCS</course></student></students>
